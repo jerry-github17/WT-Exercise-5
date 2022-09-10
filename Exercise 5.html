@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Exercise 5(3)</title>
+
+    <style>  /* Css */
+        #box{
+            border:5px solid black;
+            margin: 20px auto;
+            width:500px;
+            height:400px;
+        }
+        #contents{
+            color: blue;
+            text-align: center;
+            padding: 10px;
+        } 
+        .Labels{
+            padding:20px;
+        }
+    </style>
+    
+
+    <script>   /*JScript*/
+        function convertion(){
+            var amt = document.getElementById('amt').value;
+
+            var from_amt = document.getElementById('from_amt').value;
+            var to_amt = document.getElementById('to_amt').value;
+            var result='';
+
+            switch(from_amt){
+                case "USD":
+                    switch(to_amt){
+                        case "USD":result='$'+amt; break;
+                        case "INR":result='₹'+ parseInt(amt)*79.92; break;
+                        case "EUR":result='€'+parseInt(amt)*1.01; break;
+                    }
+                    break;
+                case "INR":
+                    switch(to_amt){
+                        case "USD":result='$'+ parseInt(amt)*0.013; break;
+                        case "INR":result='₹'+ amt; break;
+                        case "EUR":result='€'+ (amt)*0.013; break;
+                    }
+                    break;
+                case "EUR":
+                    switch(to_amt){
+                        case "USD":result='$'+parseInt(amt)*0.99; break;
+                        case "INR":result='₹'+ parseInt(amt)*79.15; break;
+                        case "EUR":result='€'+amt; break;
+                    }
+                    break;
+                    
+            }
+            document.getElementById('con_amt').innerHTML="Converted Amount = " +result;
+        } 
+    </script>
+
+    
+
+</head>
+
+<body>
+    <div id="box">
+        <div id="contents">
+            <h1>---------Currency Converter---------</h1>
+        <div class="Labels">
+            <label>Amount to Convert :</label>
+            <input type="text"  placeholder="0.00" id="amt" onkeyup="convertion()">
+        </div>
+        <div class="Labels">
+            <label>From :</label>
+            <select id="from_amt" onchange="convertion()">
+                <option value="">Select One</option>
+                <option value="USD">USD</option>
+                <option value="INR">INR</option>							
+                <option value="EUR">EUR</option>
+            </select>
+        </div>
+        <div class="Labels">
+            <label>To :</label>
+            <select id="to_amt" onchange="convertion()">
+                <option value="">Select One</option>
+                <option value="USD">USD</option>
+                <option value="INR">INR</option>							
+                <option value="EUR">EUR</option>
+            </select>
+        </div>
+            <div id ='con_amt' style="color:blue; padding: 20px;">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
